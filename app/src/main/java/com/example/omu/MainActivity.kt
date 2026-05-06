@@ -43,4 +43,4 @@ fun GreetingPreview() {
     _root_ide_package_.com.example.omu.ui.theme.OmuTheme {
         Greeting("Android")
     }
-}dddddd
+}
