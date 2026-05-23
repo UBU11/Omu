@@ -6,6 +6,8 @@ import com.google.ai.edge.litertlm.Engine
 import com.google.ai.edge.litertlm.EngineConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.withContext
 
 class GemmaEngine(private val context: Context, private val modelPath: String) {
@@ -17,13 +19,17 @@ class GemmaEngine(private val context: Context, private val modelPath: String) {
             backend = Backend.GPU(),
             cacheDir = context.cacheDir.path
         )
-        engine = Engine(config).apply { initialize() }
+        val newEngine = Engine(config)
+        newEngine.initialize()
+        engine = newEngine
     }
 
     fun generateResponse(prompt: String): Flow<String>? {
         val activeEngine = engine ?: return null
         val conversation = activeEngine.createConversation()
         return conversation.sendMessageAsync(prompt)
+            .map { it.toString() }
+            .onCompletion { conversation.close() }
     }
 
 
