@@ -1,6 +1,7 @@
 package com.example.omu.ml
 
 import android.content.Context
+import android.util.Log
 import com.google.ai.edge.litertlm.Backend
 import com.google.ai.edge.litertlm.Content
 import com.google.ai.edge.litertlm.Contents
@@ -37,7 +38,6 @@ class GemmaEngine(private val context: Context, private val modelPath: String) {
         
         conversation.sendMessageAsync(contents, object : MessageCallback {
             override fun onMessage(message: Message) {
-                // Returns the text content chunk to the callback
                 onChunk(message)
             }
 
@@ -70,6 +70,7 @@ class GemmaEngine(private val context: Context, private val modelPath: String) {
 
     companion object {
         private const val MODEL_FILENAME = "gemma-4-E2B-it.litertlm"
+        private const val TAG = "GemmaProject"
         fun getGemmaModelFile(context: Context): File? {
             val externalFilesDir = context.getExternalFilesDir(null)
             if (externalFilesDir != null) {
@@ -79,6 +80,29 @@ class GemmaEngine(private val context: Context, private val modelPath: String) {
                 }
             }
             return null
+        }
+        suspend fun initializeGemmaEngine(context: Context): GemmaEngine? {
+            val modelFile = getGemmaModelFile(context)
+
+            if (modelFile == null) {
+                Log.e(TAG, "Model file not found. Ensure it was pushed to external storage.")
+                return null
+            }
+            val engineConfig = EngineConfig(
+                modelPath = modelFile.absolutePath,
+                backend = Backend.GPU(),
+                cacheDir = context.cacheDir.path
+            )
+
+            val gemmaEngine = create(context, engineConfig)
+            try {
+                gemmaEngine.initialize()
+                Log.i(TAG, "Gemma 4 initialized successfully from local storage!")
+                return gemmaEngine
+            } catch (e: Exception) {
+                Log.e(TAG, "Failed to initialize Gemma engine", e)
+                return null
+            }
         }
 
         fun create(context: Context, config: EngineConfig): GemmaEngine {
