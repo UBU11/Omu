@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.withContext
+import java.io.File
 
 
 class GemmaEngine(private val context: Context, private val modelPath: String) {
@@ -68,6 +69,18 @@ class GemmaEngine(private val context: Context, private val modelPath: String) {
     }
 
     companion object {
+        private const val MODEL_FILENAME = "gemma-4-E2B-it.litertlm"
+        fun getGemmaModelFile(context: Context): File? {
+            val externalFilesDir = context.getExternalFilesDir(null)
+            if (externalFilesDir != null) {
+                val modelFile = File(externalFilesDir, MODEL_FILENAME)
+                if (modelFile.exists() && modelFile.length() > 0) {
+                    return modelFile
+                }
+            }
+            return null
+        }
+
         fun create(context: Context, config: EngineConfig): GemmaEngine {
             val instance = GemmaEngine(context, config.modelPath)
             instance.customConfig = config
