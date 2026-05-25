@@ -100,7 +100,7 @@ class GemmaEngine(private val context: Context, private val modelPath: String) {
                 Log.i(TAG, "Gemma 4 initialized successfully from local storage!")
                 return gemmaEngine
             } catch (e: Exception) {
-                Log.e(TAG, "Failed to initialize Gemma engine", e)
+                Log.e(TAG, "Failed to initialize Gemma engine ", e)
                 return null
             }
         }
