@@ -1,4 +1,4 @@
-# Zecure Translate: Real-Time Malayalam-English Edge Translation
+# Omu Translate: Real-Time Malayalam-English Edge Translation
 
 A high-performance, native Android application designed for **simultaneous, phrase-by-phrase translation** from Malayalam to English. This project leverages on-device Large Language Models (LLMs) and Neural Processing Units (NPUs) to achieve sub-1-second latency without an internet connection.
 
@@ -44,7 +44,7 @@ The project follows a **Unidirectional Data Flow** within an **MVVM** architectu
 ```text
 app/src/main/
 ├── assets/                     # Model weights (.onnx, .litertlm)
-├── java/com/zecure/translator/
+├── java/com/Omu/translator/
 │   ├── audio/                  # Audio capture & byte-stream logic
 │   ├── ml/                     # AI Engine wrappers (VAD, Gemma)
 │   ├── pipeline/               # The VAD State Machine & Orchestrator
