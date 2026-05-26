@@ -39,7 +39,7 @@ The project follows a **Unidirectional Data Flow** within an **MVVM** architectu
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 app/src/main/
@@ -54,7 +54,7 @@ app/src/main/
 
 ---
 
-## ⚙️ Setup & Installation
+## Setup & Installation
 
 ### Prerequisites
 *   **Hardware:** Android Device.
@@ -70,7 +70,7 @@ The app requires the following permission in your `AndroidManifest.xml`:
 
 ---
 
-## 📈 Performance Goals
+## Performance Goals
 
 | Metric | Target | Status |
 | :--- | :--- | :--- |
