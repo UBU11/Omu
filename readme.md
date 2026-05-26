@@ -57,8 +57,7 @@ app/src/main/
 ## ⚙️ Setup & Installation
 
 ### Prerequisites
-*   **Hardware:** Galaxy S24 (Exynos 2400) or equivalent NPU-capable device.
-*   **IDE:** Android Studio Ladybug (2024.2.1) or higher.
+*   **Hardware:** Android Device.
 *   **Models:**
     1. Place `silero_vad.onnx` in `app/src/main/assets/`.
     2. Place `gemma-4-e2b-audio.litertlm` in the app's internal data directory (or side-load for testing).
@@ -76,8 +75,8 @@ The app requires the following permission in your `AndroidManifest.xml`:
 | Metric | Target | Status |
 | :--- | :--- | :--- |
 | **Inference Latency** | < 800ms | 🟢 Optimized |
-| **Memory Footprint** | ~1.5GB RAM | 🟢 Controlled |
-| **Power Efficiency** | NPU-Offloaded | 🟢 Optimized |
+| **Memory Footprint** | ~2.5GB RAM | 🟢 Controlled |
+| **Power Efficiency** | GPU-Offloaded | 🟢 Optimized |
 
 ---
 
