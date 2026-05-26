@@ -28,7 +28,7 @@ The project follows a **Unidirectional Data Flow** within an **MVVM** architectu
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 *   **Language:** Kotlin 2.1.x
 *   **UI:** Jetpack Compose
